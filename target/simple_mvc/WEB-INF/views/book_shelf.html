@@ -35,14 +35,22 @@
         <table>
             <tr>
                 <td>
-                    <input type="text" placeholder="author" th:field="*{author}">
+                    <label>
+                        <input type="text" placeholder="author" th:field="*{author}">
+                    </label>
+                    <p th:if="${#fields.hasErrors('author')}">field not null</p>
                 </td>
                 <td>
-                    <input type="text" placeholder="book_title" th:field="*{title}">
+                    <label>
+                        <input type="text" placeholder="book_title" th:field="*{title}">
+                    </label>
+                    <p th:if="${#fields.hasErrors('title')}">field not null</p>
                 </td>
                 <td>
-                    <input type="text" placeholder="size (pages)" th:field="*{size}">
-                    <p th:if="${#fields.hasErrors()}">field value must be digit and less than 4 signs</p>
+                    <label>
+                        <input type="text" placeholder="size (pages)" th:field="*{size}">
+                    </label>
+                    <p th:if="${#fields.hasErrors('size')}">field value must be digit and less than 4 signs</p>
                 </td>
                 <td>
                     <input type="submit" value="save">
@@ -55,26 +63,32 @@
         <table>
             <tr>
                 <td>
-                    <input type="text" placeholder="id number" th:field="*{id}">
+                    <label>
+                        <input type="text" placeholder="id number" th:field="*{id}">
+                    </label>
                 </td>
                 <td>
                     <input type="submit" value="remove">
                 </td>
-                <td th:if="${#fields.hasErrors()}">
+                <td th:if="${#fields.hasErrors('id')}">
                     <p>Wrong id or not found</p>
                 </td>
             </tr>
         </table>
     </form>
-    </form>
-    <form method="post" th:action="@{/books/removeByRegex}">
+    <form method="post" th:action="@{/books/removeByRegex}" th:object="${regexToRemove}">
         <table>
             <tr>
                 <td>
-                    <input type="text" placeholder="regex" th:name="queryRegex">
+                    <label>
+                        <input type="text" placeholder="regex" th:field="*{text}">
+                    </label>
                 </td>
                 <td>
                     <input type="submit" value="remove by regex">
+                </td>
+                <td th:if="${#fields.hasErrors('text')}">
+                    <p>Wrong regex or not found</p>
                 </td>
             </tr>
         </table>

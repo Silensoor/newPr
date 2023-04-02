@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Custom 404</title>
+    <style>
+        body {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 <body>
-<h1>Custom Book Shelf 404 Page (Not found)</h1>
-<p th:text="${errorMessage}"></p>
-<a href="/simple_mvc_war_exploded/login">back to login page</a>
+<td>
+    <h1>Custom Book Shelf 404 Page (Not found)</h1>
+</td>
+<td>
+    <p th:text="${errorMessage}"></p>
+</td>
+<td>
+    <a href="/simple_mvc_war_exploded/login">back to login page</a>
+</td>
 </body>
 </html>

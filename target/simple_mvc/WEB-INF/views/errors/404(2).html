@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom 404</title>
+  <style>
+    body {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+<body>
+<td>
+  <h1>Custom Book Shelf 404 Page (Not found)</h1>
+</td>
+<td>
+  <p th:text="${errorMessage}"></p>
+</td>
+<td>
+  <a href="/simple_mvc_war_exploded/books/shelf">back to books shelf</a>
+</td>
+</body>
+</html>

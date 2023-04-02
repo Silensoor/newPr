@@ -3,6 +3,7 @@ org/example/web/config/WebContextConfig.class
 org/example/web/dto/LoginForm.class
 org/example/app/config/SecurityInit.class
 org/example/web/dto/Book.class
+org/example/web/dto/RegexToRemove.class
 org/example/app/services/IdProvider.class
 org/example/web/controllers/ErrorController.class
 org/example/web/controllers/LoginController.class
@@ -13,6 +14,7 @@ org/example/WebAppInitializer.class
 org/example/app/services/BookRepository.class
 org/example/app/services/ProjectRepository.class
 org/example/web/dto/BookIdToRemove.class
+org/example/app/exceptions/UploadFilesException.class
 org/example/web/controllers/BookShelfController.class
 org/example/app/config/DbConfig.class
 org/example/app/exceptions/BookShelfLoginException.class
