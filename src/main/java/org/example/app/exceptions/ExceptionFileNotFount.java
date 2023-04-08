@@ -1,10 +1,10 @@
 package org.example.app.exceptions;
 
 
-public class UploadFilesException extends Exception {
+public class ExceptionFileNotFount extends Exception {
     private final String message;
 
-    public UploadFilesException(String message) {
+    public ExceptionFileNotFount(String message) {
         this.message = message;
     }
 

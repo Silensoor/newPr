@@ -1,7 +1,9 @@
 package org.example.web.controllers;
 
+import jdk.nashorn.internal.runtime.regexp.joni.exception.SyntaxException;
 import org.apache.log4j.Logger;
-import org.example.app.exceptions.UploadFilesException;
+import org.example.app.exceptions.ExceptionFileNotFount;
+import org.example.app.exceptions.ExceptionSyntax;
 import org.example.app.services.BookService;
 import org.example.web.dto.Book;
 import org.example.web.dto.BookIdToRemove;
@@ -92,12 +94,12 @@ public class BookShelfController {
 
             return "redirect:/books/shelf";
         } else {
-            throw new UploadFilesException("NotFoundException");
+            throw new ExceptionFileNotFount("NotFoundException");
         }
     }
 
     @PostMapping("/removeByRegex")
-    public String removeByRegex(@Valid RegexToRemove regexToRemove, BindingResult bindingResult, Model model) {
+    public String removeByRegex(@Valid RegexToRemove regexToRemove, BindingResult bindingResult, Model model)throws ExceptionSyntax {
         System.out.println(regexToRemove.getText());
         if (bindingResult.hasErrors()) {
             model.addAttribute("book", new Book());
@@ -111,20 +113,22 @@ public class BookShelfController {
                         || book.getTitle().matches(regexToRemove.getText())) {
                     bookService.removeBookById(book.getId());
                 }else {
-                    model.addAttribute("book", new Book());
-                    model.addAttribute("bookList", bookService.getAllBooks());
-                    model.addAttribute("bookIdToRemove", new BookIdToRemove());
-                    return "book_shelf";
+                    throw new ExceptionSyntax("Not found by regex");
                 }
             }
             return "redirect:/books/shelf";
         }
     }
 
-    @ExceptionHandler(UploadFilesException.class)
-    public String handleError(Model model, UploadFilesException exception) {
+    @ExceptionHandler(ExceptionFileNotFount.class)
+    public String handleError(Model model, ExceptionFileNotFount exception) {
         model.addAttribute("errorMessage", exception.getMessage());
         return "errors/404(2)";
+    }
+    @ExceptionHandler(ExceptionSyntax.class)
+    public String handleErrors(Model model, ExceptionSyntax exceptionSyntax){
+        model.addAttribute("errorSyntax", exceptionSyntax.getMessage());
+        return "errors/404(3)";
     }
 }
 
